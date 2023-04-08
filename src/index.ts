@@ -130,3 +130,36 @@ let numArray = getArray<number>([1, 2, 3, 4]);
 let strArray = getArray<string>(["1", "2", "3", "4"]);
 
 // numArray.push("hello"); Error
+
+// Intersection
+type Draggable = {
+  drag: () => void;
+};
+
+type Resizable = {
+  resize: () => void;
+};
+
+type UIWidget = Draggable & Resizable;
+
+let textBox: UIWidget = {
+  drag: () => {},
+  resize: () => {},
+};
+
+// Literal Type
+type Quantity = 50 | 100;
+let quantity: Quantity = 50;
+
+// Nullable Types
+// Beware of strictNullChecks in tsconfig
+type Customer = {
+  birthday: Date;
+};
+
+function getCustomer(id: number): Customer | null | undefined {
+  return id === 0 ? null : { birthday: new Date() };
+}
+
+let customer = getCustomer(0);
+console.log(customer?.birthday);
